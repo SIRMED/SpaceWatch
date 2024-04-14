@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,900;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
 * {
   margin: 0px;
@@ -17,4 +17,291 @@
 
 body {
   background-color: #000016;
+  /* overflow: hidden; */
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 10px;
+}
+
+
+
+
+/* Monitors */
+
+.monitor {
+  padding: 8px;
+  border: 3px solid white;
+  display: inline-block;
+  margin-right: 8px;
+  vertical-align: top;
+  position: relative;
+  height: 100%;
+}
+
+.monitor.error {
+  animation: borderError 2.2s infinite;
+}
+
+.monitor.error .title {
+  background: red !important;
+}
+
+.monitor.error .title * {
+  color: white;
+}
+
+.monitor .title {
+  background: white;
+  padding: 4px 12px;
+  min-width: 400px;
+  text-align: center;
+  position: relative;
+}
+
+.monitor .title img {
+  width: 30px;
+  position: absolute;
+  top: 9px;
+  right: 9px;
+  cursor: pointer;
+  opacity: 0.15;
+}
+
+.monitor .title:hover img {
+  opacity: 1;
+}
+
+
+.monitor .title * {
+  color: black;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+}
+
+.monitor .content {
+  padding-top: 15px;
+  height: calc(100% - 45px);
+  overflow-y: auto;
+}
+
+.monitor .content .null {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.monitor .content .null * {
+  color: gray;
+}
+
+
+
+.monitor.neo {
+  aspect-ratio: 1.8808/1;
+  height: 100%;
+  background: url(./assets/imgs/radar.png);
+  background-size: cover;
+}
+
+
+.monitor.neo-details {
+  background-size: cover;
+  height: 100%;
+}
+
+.monitor.neo-details .content .neo {
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.monitor.neo-details .content .neo .caret {
+  position: absolute;
+  top: 0;
+  right: 10px;
+  opacity: 0.3;
+  cursor: pointer;
+}
+
+.monitor.neo-details .content .neo .caret:hover {
+  opacity: 1;
+}
+
+.monitor.neo-details .content .neo.expanded .caret {
+  transform: rotate(180deg);
+}
+
+.monitor.neo-details .content .neo .caret * {
+  width: 15px;
+}
+
+
+.monitor.climate {
+  float: right;
+  width: 400px;
+}
+
+.monitor.climate .content .weather * {
+  font-size: 1.4rem;
+  margin: 5px 0px;
+}
+
+.monitor.climate .content .weather * .right {
+  float: right;
+}
+
+
+.monitor.solar-flare {
+  max-width: 600px;
+} 
+
+.monitor.solar-flare .content .solar-flare {
+  margin-bottom: 20px;
+}
+
+.monitor.solar-flare .content .solar-flare .note {
+  color: #FFFF99 !important;
+}
+
+.monitor.solar-flare.warning {
+  animation: borderError 2.2s infinite;
+}
+
+.monitor.solar-flare .title.alert {
+  background: #8B0000;
+}
+
+.monitor.solar-flare .title.alert * {
+  color: white;
+}
+
+.monitor.solar-flare .title.warning {
+  background: red;
+}
+
+.monitor.solar-flare .title.warning * {
+  color: white;
+}
+
+
+
+
+
+/* Home */
+
+.home .main {
+  width: 100vw;
+  height: calc(100vh - (1rem + 11px));
+  padding: 8px;
+}
+
+.home .main .top {
+  /* background: red; */
+  height: 40%;
+  padding: 4px;
+}
+
+.home .main .bottom {
+  /* background: blue; */
+  height: 60%;
+  padding: 4px;
+}
+
+
+
+/* Footer */
+
+footer {
+  width: 100vw;
+  padding: 4px;
+}
+
+footer * {
+  font-size: 1rem;
+}
+
+footer .left {
+  color: gray;
+}
+
+footer .right {
+  float: right;
+  margin-right: 2px;
+  color: #FFFF99;
+}
+
+
+
+.red {
+  color: red !important;
+}
+
+.loading-screen {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.loading-screen img {
+  animation: heartbeat 2s infinite;
+}
+
+.l-text {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  color: gray;
+  opacity: 0.5;
+}
+
+/* Animation */
+
+@keyframes borderError {
+  0% {
+    border-color: white;
+  }
+  5% {
+    border-color: red;
+  }
+  35% {
+    border-color: white;
+  }
+}
+
+@keyframes heartbeat {
+  0% {
+    transform: scale(1);
+  }
+  20% {
+    transform: scale(1.02);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes shine {
+  0% {
+    -webkit-mask-position: 150%;
+  }
+  100% {
+    -webkit-mask-position: -50%;
+  }
 }
