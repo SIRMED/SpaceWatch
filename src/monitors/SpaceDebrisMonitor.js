@@ -8,11 +8,12 @@ const SpaceDebrisMonitor = () => {
             </div>
 
             <div className="content">
-                <div className="null">
+                <h1>clear</h1>
+                {/* <div className="null">
                     <h1>
                         //InDev
                     </h1>
-                </div>
+                </div> */}
             </div>
         </div>
     </>);

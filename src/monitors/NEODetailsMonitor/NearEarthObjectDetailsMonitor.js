@@ -1,6 +1,8 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Expand from "./../../assets/imgs/expand-black.png"
 import NEO from "./NEOItem";
+import { StatusIndicatior } from "../../routes/Home";
+import { addStatusText, removeText } from "../../global/statusTextHandles";
 
 const NearEarthObjectDetailsMonitor = () => {
 
@@ -8,16 +10,16 @@ const NearEarthObjectDetailsMonitor = () => {
     const [NEOObjects, setNEOObjects] = useState();
     const [displayCount, setDisplayCount] = useState(2);
     const [error, setError] = useState(null);
+    const { statusTexts, setStatusTexts } = useContext(StatusIndicatior)
 
     function fecthNEOFeed() {
-        var yesterdayDateInYYYYMMDD = new Date(new Date().setDate(new Date().getDate() - 1)).toISOString().split('T')[0];
-        fetch(`https://api.nasa.gov/neo/rest/v1/feed?start_date=2024-04-14&api_key=${process.env.REACT_APP_NASA_API_KEY}`)
+        const date = new Date()
+        fetch(`https://api.nasa.gov/neo/rest/v1/feed?start_date=${date.getFullYear()}-${date.getMonth() + 1}-${date.getDay() + 1}&api_key=${process.env.REACT_APP_NASA_API_KEY}`)
             .then(response => response.json())
             .then(data => {
                 setNeoCount(data.element_count);
                 setNEOObjects(data.near_earth_objects);
                 setError(data.error);
-                console.log(data);
             })
             .catch(error => {
                 console.error(error);
@@ -25,6 +27,11 @@ const NearEarthObjectDetailsMonitor = () => {
     }
 
     useEffect(() => {
+        addStatusText({
+            text: "Fetching NEO feed",
+            id: "neo",
+            statusTexts, setStatusTexts
+        })
         fecthNEOFeed();
     }, [])
 
@@ -32,11 +39,10 @@ const NearEarthObjectDetailsMonitor = () => {
         <div className={`monitor neo-details ${neoCount < 0 && "error"}`}>
             <div className="title">
                 <h1>
-                    {neoCount > 0&& `${neoCount} NEOs found`}
+                    {neoCount > 0 && `${neoCount} NEOs found`}
                     {neoCount === 0 && " Finding NEOs..."}
                     {neoCount < 0 && "Error"}
                 </h1>
-                <img src={Expand} alt="Expand Icon" />
             </div>
 
             <div className="content">

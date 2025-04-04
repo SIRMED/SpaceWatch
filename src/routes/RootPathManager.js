@@ -9,7 +9,7 @@ const RootPathManager = () => {
     useEffect(() => {
         setTimeout(() => {
             setIsLoading(false);
-        }, 2700);
+        }, 2100);
     }, [])
 
     return (<>
@@ -18,11 +18,14 @@ const RootPathManager = () => {
                 <img src={Logo} alt="logo" width={400} />
                 <br /><br />
                 <center>
-                    <p style={{ color: "gray", fontWeight: "100" }} className="montserrat" >
+                    <p style={{ color: "white", fontWeight: "100" }} className="montserrat" >
                         Astronomical data provided by api.nasa.gov <br />
                         Weather data provided by www.weatherapi.com <br />
-                        <i style={{ color: "gray" }}>SpaceWatch v0.0.0</i>
+                        <i style={{ color: "white" }}>SpaceWatch v0.0.0</i>
                     </p>
+                    <h1>
+                        SpaceWatch
+                    </h1>
                 </center>
             </div>
             <span className="l-text">

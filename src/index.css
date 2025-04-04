@@ -16,7 +16,8 @@
 }
 
 body {
-  background-color: #000016;
+  /* background-color: #000016; */
+  background-color: black;
   /* overflow: hidden; */
 }
 
@@ -68,7 +69,7 @@ body {
 .monitor .title {
   background: white;
   padding: 4px 12px;
-  min-width: 400px;
+  /* min-width: 400px; */
   text-align: center;
   position: relative;
 }
@@ -113,16 +114,18 @@ body {
 
 
 .monitor.neo {
-  aspect-ratio: 1.8808/1;
+  /* aspect-ratio: 1.8808/1; */
+  width: 38%;
   height: 100%;
   background: url(./assets/imgs/radar.png);
-  background-size: cover;
+  background-size: 100% 100%;
 }
 
 
 .monitor.neo-details {
   background-size: cover;
   height: 100%;
+  width: 20%;
 }
 
 .monitor.neo-details .content .neo {
@@ -150,10 +153,28 @@ body {
   width: 15px;
 }
 
+.monitor.space-debris {
+  width: 13%;
+}
 
 .monitor.climate {
   float: right;
-  width: 400px;
+  width: 27%;
+}
+
+.monitor.climate .content h1 {
+  width: 100%;
+  padding-left: 120px;
+  background-color: darkgreen;
+  margin-top: -14px;
+  font-family: monospace;
+  font-weight: bolder;
+  margin-bottom: 10px;
+}
+
+.monitor.climate .content .weather {
+  text-align: center;
+  padding-top: 70px;
 }
 
 .monitor.climate .content .weather * {
@@ -167,7 +188,7 @@ body {
 
 
 .monitor.solar-flare {
-  max-width: 600px;
+  width: 25%;
 } 
 
 .monitor.solar-flare .content .solar-flare {
@@ -199,6 +220,23 @@ body {
 }
 
 
+.monitor.cme {
+  width: 25%;
+} 
+
+.monitor.geomag-storm {
+  width: 25%;
+}
+
+.monitor.sep {
+  width: 23%;
+}
+
+.monitor.gst {
+  max-width: 600px;
+} 
+
+
 
 
 
@@ -221,6 +259,8 @@ body {
   height: 60%;
   padding: 4px;
 }
+
+
 
 
 

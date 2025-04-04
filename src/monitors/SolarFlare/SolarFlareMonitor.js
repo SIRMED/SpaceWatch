@@ -1,21 +1,24 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import SolarFlare from "./SolarFlare";
+import { StatusIndicatior } from "../../routes/Home";
+import { addStatusText, removeText } from "../../global/statusTextHandles";
+
 
 const SolarFlareMonitor = () => {
 
     const [SolarFlares, setSolarFlares] = useState(null);
     const [numberOfClassMFlares, setNumberOfClassMFlares] = useState(0);
     const [numberOfClassXFlares, setNumberOfClassXFlares] = useState(0);
-
+    const { statusTexts, setStatusTexts } = useContext(StatusIndicatior)
 
     function FecthSolarFlareFeed() {
-        fetch(`https://api.nasa.gov/DONKI/FLR?startDate=2016-01-01&endDate=2016-01-30&api_key=${process.env.REACT_APP_NASA_API_KEY}`)
+        fetch(`https://api.nasa.gov/DONKI/FLR?api_key=${process.env.REACT_APP_NASA_API_KEY}`)
             .then(response => response.json())
             .then(data => {
                 let tempClassMFlares = [];
                 let tempClassXFlares = [];
                 setSolarFlares(data);
-                
+
                 data.forEach(solarFlare => {
                     var classInString = new String(solarFlare.classType);
                     if (classInString.includes("M")) {
@@ -34,6 +37,11 @@ const SolarFlareMonitor = () => {
     }
 
     useEffect(() => {
+        addStatusText({
+            text: "Fetching Solar Flare feed",
+            id: "sf",
+            statusTexts, setStatusTexts
+        })
         FecthSolarFlareFeed();
     }, [])
 
@@ -43,13 +51,13 @@ const SolarFlareMonitor = () => {
                 <h1 className="montserrat">
                     {!SolarFlares && "Finding Solar Flares..."}
                     {SolarFlares && !numberOfClassMFlares && !numberOfClassXFlares && `${SolarFlares.length} Solar Flares found`}
-                    {numberOfClassMFlares > 0 && `${numberOfClassMFlares} Class-M Solar Flare${numberOfClassMFlares > 1 && "s" || ""} found`}
-                    {numberOfClassXFlares > 0 && `${numberOfClassXFlares} Class-X Solar Flare${numberOfClassXFlares > 1 && "s" || ""} found`}
+                    {numberOfClassMFlares > 0 && numberOfClassXFlares === 0 && `${numberOfClassMFlares} M-Class Solar Flare${numberOfClassMFlares > 1 && "s" || ""} found`}
+                    {numberOfClassXFlares > 0 && `${numberOfClassXFlares} X-Class Solar Flare${numberOfClassXFlares > 1 && "s" || ""} found`}
                 </h1>
             </div>
 
             <div className="content">
-                
+
                 {SolarFlares && SolarFlares.map((solarFlare, index) => {
                     return <SolarFlare key={index} solarFlare={solarFlare} index={index} />;
                 })}
@@ -58,5 +66,5 @@ const SolarFlareMonitor = () => {
         </div>
     </>);
 }
- 
+
 export default SolarFlareMonitor;

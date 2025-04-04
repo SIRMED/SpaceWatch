@@ -5,6 +5,8 @@ import App from './App';
 import { BrowserRouter as BrowserRouter } from "react-router-dom"
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+document.title = "SpaceWatch";
+ 
 root.render(
   <BrowserRouter>
     <React.StrictMode>
